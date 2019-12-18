@@ -229,7 +229,8 @@ public class view_login_admin extends javax.swing.JFrame {
     private void batalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batalActionPerformed
         try {
             // TODO add your handling code here:
-            new view_login_awal().show();
+            new view_login_awal().setVisible(true);
+               this.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(view_login_admin.class.getName()).log(Level.SEVERE, null, ex);
         }
