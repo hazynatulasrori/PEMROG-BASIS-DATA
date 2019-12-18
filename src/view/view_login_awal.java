@@ -157,7 +157,8 @@ public class view_login_awal extends javax.swing.JFrame {
     private void login_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_adminActionPerformed
            try {
                // TODO add your handling code here:
-               new view_login_admin().show();
+               new view_login_admin().setVisible(true);
+               this.setVisible(false);
            } catch (SQLException ex) {
                Logger.getLogger(view_login_awal.class.getName()).log(Level.SEVERE, null, ex);
            }
@@ -166,7 +167,8 @@ public class view_login_awal extends javax.swing.JFrame {
     private void login_kasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_kasirActionPerformed
            try {
                // TODO add your handling code here:
-               new view_login_kasir().show();
+               new view_login_kasir().setVisible(true);
+               this.setVisible(false);
            } catch (SQLException ex) {
                Logger.getLogger(view_login_awal.class.getName()).log(Level.SEVERE, null, ex);
            }

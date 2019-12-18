@@ -7,10 +7,15 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import koneksi.koneksi;
 
 /**
  *
@@ -77,6 +82,7 @@ public class view_login_admin extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         loginadmin = new javax.swing.JButton();
         JAM = new javax.swing.JLabel();
+        batal = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
@@ -95,6 +101,12 @@ public class view_login_admin extends javax.swing.JFrame {
         jLabel3.setText("Username ");
 
         jLabel4.setText("Password ");
+
+        username_admin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                username_adminActionPerformed(evt);
+            }
+        });
 
         loginadmin.setText("LOGIN");
         loginadmin.addActionListener(new java.awt.event.ActionListener() {
@@ -143,46 +155,89 @@ public class view_login_admin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(pass_admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(loginadmin)
                 .addContainerGap())
         );
 
         JAM.setText("-");
 
+        batal.setText("Batal");
+        batal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                batalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(batal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(JAM)
                 .addGap(6, 6, 6))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(JAM)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JAM)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(batal)))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginadminActionPerformed
+
+            try {
+                Connection c = koneksi.getKoneksi();
+                Statement s = c.createStatement();
+                String sql = "SELECT * FROM tbl_user where user_username='"+username_admin.getText()+ "' and user_password='"+pass_admin.getText()+"'";
+            
+                ResultSet r = s.executeQuery(sql);
+            
+                int baris = 0;
+                while (r.next()) {
+                  baris = r.getRow();
+                }
+            
+            if (baris ==1) {
+                new view_admin().setVisible(true);
+               this.setVisible(false);
+            }else {
+                JOptionPane.showMessageDialog(null,"Gagal Login");
+            }
+              
+        } catch (SQLException e) {
+            
+        }
+    }//GEN-LAST:event_loginadminActionPerformed
+
+    private void batalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batalActionPerformed
         try {
             // TODO add your handling code here:
-            new view_admin().show();
+            new view_login_awal().show();
         } catch (SQLException ex) {
             Logger.getLogger(view_login_admin.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_loginadminActionPerformed
+    }//GEN-LAST:event_batalActionPerformed
+
+    private void username_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_adminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_username_adminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,11 +276,13 @@ public class view_login_admin extends javax.swing.JFrame {
                     Logger.getLogger(view_login_admin.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JAM;
+    private javax.swing.JButton batal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

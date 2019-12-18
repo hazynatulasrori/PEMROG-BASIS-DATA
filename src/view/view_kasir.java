@@ -5,55 +5,17 @@
  */
 package view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.Timer;
-
 /**
  *
  * @author adil steven
  */
-public class view_admin extends javax.swing.JFrame {
+public class view_kasir extends javax.swing.JFrame {
 
     /**
-     * Creates new form view_admin
+     * Creates new form view_kasir
      */
-    public view_admin() throws SQLException {
+    public view_kasir() {
         initComponents();
-        Jam();
-//        tblmodel = new DefaultTableModel(null, header);
-//        data_tabel.setModel(tblmodel);
-//        data_tabel.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-//        model.Tampil(this);
-//        setLebarKolom();
-
-    }
-
-    public final void Jam() {
-        ActionListener taskPerformer = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            String nol_jam = "", nol_menit = "", nol_detik = "";
-
-                java.util.Date dateTime = new java.util.Date();
-                int nilai_jam = dateTime.getHours();
-                int nilai_menit = dateTime.getMinutes();
-                int nilai_detik = dateTime.getSeconds();
-
-                if (nilai_jam <= 9)nol_jam = "0";
-                if (nilai_menit <= 9)nol_menit = "0";
-                if (nilai_detik <= 9) nol_detik = "0";
-                
-                String jam = nol_jam + Integer.toString(nilai_jam);
-                String menit = nol_menit + Integer.toString(nilai_menit);
-                String detik = nol_detik + Integer.toString(nilai_detik);
-                JAM.setText(jam+ ":"+menit+":"+detik+" WIB");
-            }
-        };
-        new Timer (1000, taskPerformer).start();
     }
 
     /**
@@ -190,7 +152,7 @@ public class view_admin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(JAM)))
@@ -199,11 +161,10 @@ public class view_admin extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(JAM)
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         pack();
@@ -242,24 +203,20 @@ public class view_admin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(view_admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(view_kasir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(view_admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(view_kasir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(view_admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(view_kasir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(view_admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(view_kasir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new view_admin().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(view_admin.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new view_kasir().setVisible(true);
             }
         });
     }

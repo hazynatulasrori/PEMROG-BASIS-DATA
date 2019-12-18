@@ -7,14 +7,19 @@ package koneksi;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  *
  * @author adil steven
  */
-public class koneksi {
 
-    private static Connection koneksi;
+
+
+public class koneksi {
+   
+    public static Connection koneksi;
     public static Connection getKoneksi()
     {
         if (koneksi== null)
@@ -23,7 +28,7 @@ public class koneksi {
                 String url= "jdbc:mysql://localhost/db_penjualan";
                 String username= "root";
                 String password= "";
-//                String driver = "com.mysql.jdbc.Driver";
+                String driver = "com.mysql.jdbc.Driver";
                 DriverManager.registerDriver(new com.mysql.jdbc.Driver());
                 koneksi= DriverManager.getConnection(url, username, password);
             } catch (Exception e) {
@@ -32,5 +37,12 @@ public class koneksi {
         }
         return koneksi;
     }
+    public koneksi con;
+    public Statement stm;
+
+//    public void config() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 }
+
 
