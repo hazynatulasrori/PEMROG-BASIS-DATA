@@ -42,7 +42,7 @@
                                       <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="37" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="data_alamat" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
                                       <Component id="data_phone" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
@@ -55,8 +55,8 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="data_nama" pref="125" max="32767" attributes="0"/>
                                       <Component id="data_id" max="32767" attributes="0"/>
-                                      <Component id="data_nama" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
